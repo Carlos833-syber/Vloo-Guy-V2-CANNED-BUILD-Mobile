@@ -3,7 +3,7 @@ name: Android APK
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, coderabbit/android-port]
   pull_request:
     branches: [main]
 
