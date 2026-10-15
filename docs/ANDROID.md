@@ -2,8 +2,8 @@
 
 ## Gerar o APK
 
-O workflow **Android APK** (`.github/workflows/android.yml`) roda em pushes e
-pull requests para `main`, ou manualmente em **Actions → Android APK → Run workflow**
+O workflow **Android APK** (`.github/workflows/android.yml`) roda em pushes para
+`main` e `coderabbit/android-port`, e pull requests para `main`, ou manualmente em **Actions → Android APK → Run workflow**
 após o workflow entrar na branch padrão. Baixe o artefato
 `Vloo-Guy-Android-arm64` da execução concluída e extraia o APK.
 
@@ -51,9 +51,11 @@ adicionais não está habilitado nessa configuração Android.
 
 ## Validação e limites
 
-A checagem de tipos Haxe para o alvo Android passou com as dependências fixadas.
-Isso não substitui a compilação C++/Gradle nem o teste no dispositivo. O APK ainda
-precisa ser validado quanto a abertura, áudio, vídeos, shaders, multitouch, pausa,
+A checagem de tipos Haxe e a compilação nativa C++/Gradle passaram com as
+dependências fixadas. O [workflow de 15/10/2026](https://github.com/Carlos833-syber/Vloo-Guy-V2-CANNED-BUILD-Mobile/actions/runs/38663504377)
+gerou o APK de teste ARM64 (aproximadamente 570 MiB). A integridade ZIP e a
+arquitetura ARM64 das quatro bibliotecas nativas foram verificadas. O APK ainda
+precisa ser testado em aparelho quanto a abertura, áudio, vídeos, shaders, multitouch, pausa,
 retorno do segundo plano, conclusão de músicas e armazenamento dos saves.
 
 A build original incompleta lista `chronology`, `lurking`, `blunted` e `nightmare`
