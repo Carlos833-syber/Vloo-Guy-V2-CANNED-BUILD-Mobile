@@ -40,8 +40,22 @@ jobs:
           haxelib run lime config JAVA_HOME "$JAVA_HOME"
           haxelib run lime config ANDROID_SETUP true
           haxelib run lime config ANDROID_HOST linux-x86_64
+          haxelib run lime config HXCPP_STRIP "$ANDROID_HOME/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip"
+      - name: Restore native build cache
+        uses: actions/cache/restore@v4
+        with:
+          path: export/release/android/obj
+          key: ${{ runner.os }}-vloo-arm64-v1-${{ hashFiles('setup/setup-android.sh') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-vloo-arm64-v1-${{ hashFiles('setup/setup-android.sh') }}-
       - name: Build ARM64 APK
-        run: haxelib run lime build android -DHXCPP_COMPILE_THREADS=2
+        run: haxelib run lime build android -DHXCPP_COMPILE_THREADS="$(nproc)"
+      - name: Save native build cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: export/release/android/obj
+          key: ${{ runner.os }}-vloo-arm64-v1-${{ hashFiles('setup/setup-android.sh') }}-${{ github.sha }}
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:

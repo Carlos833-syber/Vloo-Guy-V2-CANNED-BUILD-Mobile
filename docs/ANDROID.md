@@ -26,6 +26,7 @@ haxelib run lime config JAVA_HOME /caminho/jdk-17
 haxelib run lime config ANDROID_SETUP true
 # Linux x86_64; em outros sistemas use a pasta correspondente em NDK/toolchains/llvm/prebuilt.
 haxelib run lime config ANDROID_HOST linux-x86_64
+haxelib run lime config HXCPP_STRIP /caminho/android-sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip
 haxelib run lime build android -DHXCPP_COMPILE_THREADS=2
 ```
 
