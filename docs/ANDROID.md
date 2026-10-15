@@ -3,7 +3,7 @@
 ## Gerar o APK
 
 O workflow **Android APK** (`.github/workflows/android.yml`) roda em pushes para
-`main` e `coderabbit/android-port`, e pull requests para `main`, ou manualmente em **Actions → Android APK → Run workflow**
+`main` e `coderabbit/android-port`, e pull requests para essas duas branches, ou manualmente em **Actions → Android APK → Run workflow**
 após o workflow entrar na branch padrão. Baixe o artefato
 `Vloo-Guy-Android-arm64` da execução concluída e extraia o APK.
 
@@ -50,6 +50,16 @@ Lua está habilitado no Android. O único stage HScript incluído no mod,
 adicionais não está habilitado nessa configuração Android.
 
 ## Validação e limites
+
+O workflow executa `bash tests/run-assets.sh` antes de compilar. Os testes usam os
+carregadores reais de JSON com assets registrados apenas em memória e uma pasta
+temporária como armazenamento do aplicativo. Verificam personagens e cenários
+empacotados, prioridade dos mods, fallback para BF e arquivos soltos do desktop,
+com mods habilitados, como na build Android. Podem ser executados localmente após instalar
+as dependências de `setup/setup-android.sh`.
+
+Essa validação não executa gráficos, áudio ou Lua no Android e não confirma que
+todos os fechamentos ao selecionar músicas foram resolvidos no aparelho.
 
 A checagem de tipos Haxe e a compilação nativa C++/Gradle passaram com as
 dependências fixadas. O [workflow de 15/10/2026](https://github.com/Carlos833-syber/Vloo-Guy-V2-CANNED-BUILD-Mobile/actions/runs/38663504377)
