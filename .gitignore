@@ -15,3 +15,6 @@ export/*
 # ! means a file should be added regardless of it it gets ignored prior.
 # Including to allow others to use already set-up configuration tweaked for the project.
 
+
+# Generated Android mod manifest
+.android-assets/

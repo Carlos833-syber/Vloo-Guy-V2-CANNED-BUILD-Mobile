@@ -8,7 +8,7 @@
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
 
 	<!-- NOTE TO SELF: DISABLE THIS IF ISSUES ARE FOUND -->
-	<haxedef name="LINC_LUA_RELATIVE_DYNAMIC_LIB"/> <!-- stable luas PUT AFTER FIRST LINE WITH APP NAME AND ETC -->
+	<haxedef name="LINC_LUA_RELATIVE_DYNAMIC_LIB" unless="android"/> <!-- stable luas PUT AFTER FIRST LINE WITH APP NAME AND ETC -->
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -20,9 +20,9 @@
 	
 	<!-- ______________________ PSYCH ENGINE CUSTOMIZATION ______________________ -->
 
-	<define name="MODS_ALLOWED" if="desktop" />
+	<define name="MODS_ALLOWED" if="desktop || android" />
 	<define name="HSCRIPT_ALLOWED" if="desktop" />
-	<define name="LUA_ALLOWED" if="desktop" />
+	<define name="LUA_ALLOWED" if="desktop || android" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" if="windows || linux || android" unless="32bits"/>
 	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
@@ -79,9 +79,15 @@
 
 	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
 
-	<section if="MODS_ALLOWED">
+	<section if="MODS_ALLOWED" unless="android">
 		<assets path='example_mods' rename='mods' embed='false'/>
 	</section>
+	<!-- Android assets are extracted into app-private storage for the mod loaders. -->
+	<assets path="example_mods" rename="bundled-mods" exclude="*.hx" type="binary" embed="true" if="android" />
+	<assets path="source/android/performance.lua" rename="bundled-mods/performance/stages/performance.lua" type="binary" embed="true" if="android" />
+	<assets path=".android-assets/mods-manifest.txt" rename="android-mods-manifest.txt" type="text" embed="true" if="android" />
+	<config:android minimum-sdk-version="23" target-sdk-version="34" build-tools-version="34.0.0" if="android" />
+	<app packageName="com.carlos833.vlooguy" package="com.carlos833.vlooguy" if="android" />
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 
 	<!-- _______________________________ Libraries ______________________________ -->

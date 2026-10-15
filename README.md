@@ -1,6 +1,10 @@
 # Friday Night Funkin' - Psych Engine
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
 
+## Android
+
+Port inicial com controles de toque e workflow para APK ARM64. Veja [instruções e limitações](docs/ANDROID.md).
+
 ## Installation:
 You must have [Haxe](https://haxe.org/download/), installed in order to move on to these next steps
 
