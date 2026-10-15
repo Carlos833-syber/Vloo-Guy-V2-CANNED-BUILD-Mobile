@@ -23,6 +23,7 @@ bash setup/setup-android.sh
 haxelib run lime config ANDROID_SDK /caminho/android-sdk
 haxelib run lime config ANDROID_NDK_ROOT /caminho/android-sdk/ndk/25.2.9519653
 haxelib run lime config JAVA_HOME /caminho/jdk-17
+haxelib run lime config ANDROID_SETUP true
 haxelib run lime build android -arm64 -DHXCPP_COMPILE_THREADS=2
 ```
 
