@@ -1,0 +1,14 @@
+-cp source
+-cp tests
+-lib lime
+-lib openfl
+-lib flixel
+-lib flixel-addons
+-lib flixel-ui
+-lib tjson
+-D tools=8.1.2
+-D ACHIEVEMENTS_ALLOWED
+-D FLX_NO_DEBUG
+--remap flash:openfl
+--macro flixel.system.macros.FlxDefines.run()
+--macro allowPackage('flash')
